@@ -1,0 +1,27 @@
+﻿tbl_invoice.total = grandtotal - discount
+
+SELECT *,(SELECT SUM(tbl_payment.amount) FROM `tbl_payment` WHERE invoiceid = tbl_invoice.id) FROM `tbl_invoice` WHERE 1
+
+SELECT tbl_invoice.id,tbl_invoice.people_id,tbl_people.name,`total`,`discount`,(SELECT SUM(tbl_payment.amount) FROM `tbl_payment` WHERE invoiceid = tbl_invoice.id) as paid_amount,tbl_invoice.`status`,tbl_invoice.`created_at` FROM `tbl_invoice` INNER JOIN tbl_people on tbl_people.people_id = tbl_invoice.people_id WHERE 1
+
+SELECT tbl_invoice.id,tbl_invoice.people_id,tbl_people.name,`total`,`discount`,(SELECT SUM(tbl_payment.amount) FROM `tbl_payment` WHERE invoiceid = tbl_invoice.id) as paid_amount,if(paid_amount>=total,'Paid','Due') as status,tbl_invoice.`created_at` FROM `tbl_invoice` INNER JOIN tbl_people on tbl_people.people_id = tbl_invoice.people_id WHERE 1
+
+SELECT RIGHT(CONCAT('0000000000', `id`), 10) from tbl_invoice
+select substr('0000'||3,-4);
+
+var cancelToken = new CancellationTokenSource();
+            Task.Factory.StartNew(async () => {
+                await Task.Delay(500);
+                MessageBox.Show("Task Completed");
+                // call web API
+            }, cancelToken.Token);
+
+            //this stops the Task:
+            //cancelToken.Cancel(false);
+
+SELECT tbl_invoice.created_at AS dt,CONCAT('Bill No - ',RIGHT(CONCAT('00000', `id`),5),IF(reference IS NULL OR reference='','',CONCAT(' - ',reference))) AS description,total AS billamount, 0 AS paid FROM tbl_invoice UNION SELECT tbl_sales_payment.created_at AS dt, payment_type AS description, CASE WHEN amount<0 THEN ABS(amount) ELSE 0 END AS billamount, CASE WHEN amount>0 THEN amount ELSE 0 END AS paid FROM tbl_sales_payment
+
+
+$"SELECT tbl_invoice.created_at AS dt,CONCAT('Bill No - ',RIGHT(CONCAT('00000', `id`),5),IF(reference IS NULL OR reference='','',CONCAT(' - ',reference))) AS description,total AS billamount, 0 AS paid FROM tbl_invoice WHERE tbl_invoice.people_id={peopleID} AND (CONVERT(tbl_invoice.created_at,DATE) BETWEEN '{Validation.convertDate(dtpStart)}' AND '{Validation.convertDate(dtpEnd)}') UNION SELECT tbl_sales_payment.created_at AS dt, payment_type AS description, 0 AS billamount, amount AS paid FROM tbl_sales_payment WHERE tbl_sales_payment.people_id = {peopleID} AND payment_type != 'Account' AND (CONVERT(tbl_sales_payment.created_at,DATE) BETWEEN '{Validation.convertDate(dtpStart)}' AND '{Validation.convertDate(dtpEnd)}') ORDER BY dt"
+
+$"SELECT tbl_invoice.created_at AS dt,CONCAT('Bill No - ',RIGHT(CONCAT('00000', `id`),5),IF(reference IS NULL OR reference='','',CONCAT(' - ',reference))) AS description,total AS billamount, 0 AS paid FROM tbl_invoice WHERE tbl_invoice.people_id={peopleID} AND (CONVERT(tbl_invoice.created_at,DATE) BETWEEN '{Validation.convertDate(dtpStart)}' AND '{Validation.convertDate(dtpEnd)}') UNION SELECT tbl_sales_payment.created_at AS dt, payment_type AS description, CASE WHEN amount<0 THEN ABS(amount) ELSE 0 END AS billamount, CASE WHEN amount>0 THEN amount ELSE 0 END AS paid FROM tbl_sales_payment WHERE tbl_sales_payment.people_id = {peopleID} AND payment_type != 'Account' AND (CONVERT(tbl_sales_payment.created_at,DATE) BETWEEN '{Validation.convertDate(dtpStart)}' AND '{Validation.convertDate(dtpEnd)}') ORDER BY dt"

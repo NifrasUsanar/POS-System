@@ -1,0 +1,15 @@
+﻿Brand, Category (Duplicate Entry)
+Barcode, ItemCode (Duplicate Entry Validation)
+
+Find Profit (Total Sale - Sale Cost) - expense
+Final Report
+
+Purchase, Sales (View Payment - Cheque Details shoulbe shown in a different form)
+
+
+Features
+--------------------
+Party Cheque
+Owner Cheque Book Details need to be stored
+
+SELECT CONCAT(tbl_people.name,' (Purchase Payment)') AS description, amount, CONCAT(tbl_user.user_name,' @ ',tbl_purchase_payment.created_at) AS details FROM tbl_purchase_payment LEFT JOIN tbl_people ON tbl_purchase_payment.people_id=tbl_people.people_id LEFT JOIN tbl_user ON tbl_user.user_id=tbl_purchase_payment.created_by WHERE 
