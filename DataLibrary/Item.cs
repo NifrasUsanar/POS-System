@@ -53,6 +53,7 @@ namespace DataLibrary
             else return GetData(view_query + " ORDER BY itm_id desc LIMIT 1");
         }
 
+        //Get total results details before retrieve records from database
         public decimal totalResults(bool is_filter,bool is_alert,string search="", string brand="", string category="")
         {
             string query = resultQuery;
